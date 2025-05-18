@@ -1,8 +1,12 @@
 import React from 'react'
+import Home from './pages/Home'
 
 const App = () => {
   return (
-    <div> Basic cicd practice App</div>
+    <div>
+        <h1>Basic ci cd project</h1>
+        <Home />
+    </div>
   )
 }
 
