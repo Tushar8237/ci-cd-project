@@ -30,6 +30,15 @@ jobs:
       - name: Install Backend dependencies
         working-directory: ./server
         run: npm install
+      
+      - name: Create .env file for backend
+        working-directory: ./server
+        run: |
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "JWT_EXPIRE=${{ secrets.JWT_EXPIRE }}" >> .env
+          echo "JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}" >> .env
+          echo "JWT_REFRESH_EXPIRE=${{ secrets.JWT_REFRESH_EXPIRE }}" >> .env
+
 
       - name: Install Frontend dependencies
         working-directory: ./client

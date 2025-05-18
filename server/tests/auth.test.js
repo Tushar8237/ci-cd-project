@@ -37,7 +37,7 @@ describe("Auth API", () => {
             password: "Test@1234",
         });
 
-        expect(res.statusCode).toBe(500);
+        expect(res.statusCode).toBe(201);
         expect(res.body).toHaveProperty("success", true);
         expect(res.body).toHaveProperty("userWithoutPass");
         expect(res.body.userWithoutPass).not.toHaveProperty("password");
