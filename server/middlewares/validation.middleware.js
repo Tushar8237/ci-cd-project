@@ -1,4 +1,4 @@
-import { createError } from "../utils/custom.error";
+import { createError } from "../utils/custom.error.js";
 
 const validation = (schema) => (req, res, next) => {
     const { error } = schema.validate(req.body)
