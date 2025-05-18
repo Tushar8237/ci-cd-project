@@ -1,0 +1,64 @@
+name : MERN CI/CD
+
+on:
+    push:
+        branches: [main] # Trigger on push to main branch
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+
+        services:
+            mongo:
+                image: mongo
+                ports: ['27017:27017']
+                options: >-
+                    --health-cmd="mongo --eval 'db.stats()'"
+                    --health-intervals=10s
+                    --health-timeout=5s
+                    --health-retries=5
+        
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                node-version: 18
+            
+
+            - name: Install Backend dependencies
+              working-directory: ./server
+              run: npm install
+
+            
+            - name: Install Frontend dependencies
+              working-directory: ./client
+              run: npm install
+
+            
+            - name: Lint Backend 
+              working-directory: ./server
+              run: npm run lint
+            
+
+            - name: Lint Frontend 
+              working-directory: ./client
+              run: npm run lint
+            
+
+            - name: Run Backend Tests
+              working-directory: ./server
+              run: npm test
+            
+
+            - name: Run Frontend Tests
+              working-directory: ./client
+              run: npm test
+
+            
+            - name: Build Frontend
+              working-directory: ./client
+              run: npm run build
