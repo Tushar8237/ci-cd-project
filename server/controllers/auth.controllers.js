@@ -16,7 +16,7 @@ export const registerUser = async (req, res, next) => {
         }
 
         // hashed password
-        const hashedPassword = await bcrypt.hashSync(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const user = new User({
             name,
@@ -69,7 +69,7 @@ export const loginUser = async (req, res, next) => {
         }
 
         // hashed password
-        const isMatch = await bcrypt.compareSync(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);
 
         // Throw error
         if (!isMatch) {
