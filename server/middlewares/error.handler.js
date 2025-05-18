@@ -1,5 +1,4 @@
 export const errorHandler = (err, req, res, next) => {
-  console.error("Error:", err); // Add this for debugging
   // Use the status code from the error or default to 500
   let statusCode = err.statusCode || 500;
   // Use the message from the error or default to a generic message
