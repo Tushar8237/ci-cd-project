@@ -97,4 +97,14 @@ describe("Auth API", () => {
             "User not found or invalid credential"
         );
     });
+
+    it("Should return 201 Logout successful", async () => {
+        const res = await request(app).post("/api/v1/logout").send({
+           message : "Logout Successfully"
+        });
+
+        expect(res.statusCode).toBe(201);
+        expect(res.body).toHaveProperty("success", true);
+        expect(res.body).toHaveProperty("message",  "Logout Successfully");
+    })
 });
