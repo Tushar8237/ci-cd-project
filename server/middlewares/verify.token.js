@@ -54,6 +54,7 @@ export const verifyUser = (req, res, next) => {
         });
     } catch (error) {
         // This block is now only for unexpected errors
+        next(error)
         return res.status(500).json({
             success: false,
             message: "Internal Server Error",
