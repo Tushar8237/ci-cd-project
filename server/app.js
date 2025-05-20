@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
 import { errorHandler } from "./middlewares/error.handler.js";
 
 // Load env vars
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
   res.send("Test API is running");
 });
 app.use('/api/v1', authRoutes);
+app.use('/api/v1', userRoutes)
 
 // Error handler (must be after all routes)
 app.use(errorHandler);
