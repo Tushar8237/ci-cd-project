@@ -1,30 +1,3 @@
-// import jwt from "jsonwebtoken";
-
-// export const verifyUser = (req, res, next) => {
-//     try {
-//         // Get token from headers
-//         const authHeader = req.headers.authorization;
-
-//         if (!authHeader || !authHeader.startsWith("Bearer")) {
-//             return res
-//                 .status(401)
-//                 .json({ success: false, message: "Access token missing" });
-//         }
-
-//         const token = authHeader.split(" ")[1];
-
-//         // Verify access token
-//         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-//         req.user = decoded;
-
-//         // Call next function token is valid
-//         next();
-//     } catch (error) {
-//         next(error);
-//     }
-// };
-
-
 import jwt from "jsonwebtoken";
 
 export const verifyUser = (req, res, next) => {
