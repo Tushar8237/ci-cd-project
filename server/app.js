@@ -7,6 +7,7 @@ import connectDB from "./config/db.js";
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
 import { errorHandler } from "./middlewares/error.handler.js";
+import { rateLimiter } from './middlewares/rateLimiter.js';
 
 // Load env vars
 dotenv.config();
@@ -21,6 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.use(rateLimiter); // Apply rate limiting to all routes
 
 // Routes
 app.get("/", (req, res) => {
