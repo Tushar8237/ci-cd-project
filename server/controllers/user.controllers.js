@@ -3,8 +3,7 @@ import { createError } from "./../utils/custom.error.js";
 
 export const getUserProfile = async (req, res, next) => {
     try {
-        const ip = req.ip
-        console.log(ip)
+        
         const userId = req.user.id;
         const user = await User.findById(userId).select("-password");
 
