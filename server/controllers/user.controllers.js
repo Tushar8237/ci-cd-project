@@ -3,7 +3,6 @@ import { createError } from "./../utils/custom.error.js";
 
 export const getUserProfile = async (req, res, next) => {
     try {
-        
         const userId = req.user.id;
         const user = await User.findById(userId).select("-password");
 
@@ -20,7 +19,6 @@ export const getUserProfile = async (req, res, next) => {
         next(error);
     }
 };
-
 
 // Update user profile
 export const updateUser = async (req, res, next) => {
@@ -43,5 +41,22 @@ export const updateUser = async (req, res, next) => {
         });
     } catch (error) {
         next(error);
+    }
+};
+
+// Upload file
+export const uploadFile = (req, res, next) => {
+    try {
+        if (!req.file) {
+            return createError(404, "No file uploaded");
+        }
+
+        res.status(200).json({
+            message: 'File uploaded successfully',
+            filename : req.file.filename,
+            path : req.file.path
+        })
+    } catch (error) {
+        next(error)
     }
 };
