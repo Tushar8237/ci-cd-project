@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
+import masterClassRoutes from './routes/masterClass.routes.js'
 import { errorHandler } from "./middlewares/error.handler.js";
 import { rateLimiter } from './middlewares/rateLimiter.js';
 
@@ -30,6 +31,8 @@ app.get("/", (req, res) => {
 });
 app.use('/api/v1', authRoutes);
 app.use('/api/v1', userRoutes)
+app.use('/api/v1', masterClassRoutes)
+
 
 // Error handler (must be after all routes)
 app.use(errorHandler);
