@@ -1,7 +1,7 @@
 import request from "supertest";
 import express from "express";
 import jwt from "jsonwebtoken";
-import { verifyUser } from "../middlewares/verify.token.js";
+import verifyUser from "../middlewares/verify.token.js";
 import dotenv from "dotenv";
 
 dotenv.config();

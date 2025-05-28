@@ -7,7 +7,6 @@ const validation = (schema) => (req, res, next) => {
        const err = createError(400, error.details[0].message);
        return next(err)
     }
-
     next();
 }
 

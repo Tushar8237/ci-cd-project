@@ -1,7 +1,7 @@
 import express from "express";
-import { verifyUser } from "../middlewares/verify.token.js";
 import { getUserProfile, updateUser, uploadFile } from "../controllers/user.controllers.js";
 import upload from './../middlewares/upload.middleware.js';
+import verifyUser from "../middlewares/verify.token.js";
 
 const router = express.Router();
 

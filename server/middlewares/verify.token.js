@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const verifyUser = (req, res, next) => {
+const verifyUser = (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
 
@@ -12,6 +12,8 @@ export const verifyUser = (req, res, next) => {
         }
 
         const token = authHeader.split(" ")[1];
+        
+        // console.log("❌ Real verify.token.js called");
 
         // Verify access token
         jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
@@ -34,3 +36,7 @@ export const verifyUser = (req, res, next) => {
         });
     }
 };
+
+
+export default verifyUser;
+export { verifyUser };

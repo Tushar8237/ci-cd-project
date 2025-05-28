@@ -29,6 +29,7 @@ app.use(rateLimiter); // Apply rate limiting to all routes
 app.get("/", (req, res) => {
   res.send("Test API is running");
 });
+
 app.use('/api/v1', authRoutes);
 app.use('/api/v1', userRoutes)
 app.use('/api/v1', masterClassRoutes)
