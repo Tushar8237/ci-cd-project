@@ -24,24 +24,8 @@ jest.unstable_mockModule("../middlewares/validation.middleware.js", () => ({
     },
 }));
 
-// jest.unstable_mockModule("../models/masterClass.model.js", () => ({
-//     __esModule: true,
-//     default: {
-//         findById: jest.fn(),
-//         prototype: {
-//             save: jest.fn().mockResolvedValue({
-//                 _id: "mock-id",
-//                 courseName: "Advanced Data Structures, Algorithms and System Design Course",
-//                 batchDate: "26th September",
-//                 currentFees: 44999,
-//                 discount: 25,
-//                 discountDate: "10th September",
-//                 classTimings: "9am - 11:30am",
-//             }),
-//         },
-//     },
-// }));
 
+// Master class test case
 jest.unstable_mockModule("../models/masterClass.model.js", () => {
   const saveMock = jest.fn().mockResolvedValue({
     _id: "mock-id",
