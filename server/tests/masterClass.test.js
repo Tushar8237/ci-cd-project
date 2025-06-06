@@ -24,8 +24,6 @@ jest.unstable_mockModule("../middlewares/validation.middleware.js", () => ({
     },
 }));
 
-
-// Master class test case
 jest.unstable_mockModule("../models/masterClass.model.js", () => {
   const saveMock = jest.fn().mockResolvedValue({
     _id: "mock-id",
@@ -51,7 +49,6 @@ jest.unstable_mockModule("../models/masterClass.model.js", () => {
 
 
 // Import master class model
-// import MasterClass from "../models/masterClass.model.js";
 const MasterClass = (await import("../models/masterClass.model.js")).default;
 
 describe("Master class Api", () => {
@@ -66,6 +63,15 @@ describe("Master class Api", () => {
         app = express();
         app.use(express.json());
         app.use("/api/v1/", masterClassRoutes);
+
+        // Global error handler
+        app.use((err, req, res, next) => {
+            const statusCode = err.statusCode|| err.status || 500;
+            res.status(statusCode).json({
+                success : false,
+                message : err.message || "Internal Server Error"
+            })
+        })
     });
 
     // Add Master class
@@ -84,6 +90,18 @@ describe("Master class Api", () => {
         expect(res.body.success).toBe(true);
         expect(res.body.message).toMatch(/Master class added successfully/);
     });
+
+    // Should return failed to add master class all field require
+    it('Should fail to add master class when required field are empty', async () => {
+
+        const res = await request(app).post("/api/v1/master-class").send({
+            courseName : 'Only course name provided other fields are missing'
+        })
+
+        expect(res.statusCode).toBe(400);
+        expect(res.body.success).toBeFalsy();
+        expect(res.body.message).toMatch(/All field required/);
+    })
 
     // Get master class
     it("Should return a master class successfully", async () => {

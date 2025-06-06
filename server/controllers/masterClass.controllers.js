@@ -21,6 +21,7 @@ export const addMasterClass = async (req, res, next) => {
             !discountDate ||
             !classTimings
         ) {
+            console.log('All field require')
             return next(createError(400, "All field required"));
         }
 
