@@ -71,6 +71,7 @@ describe("Master class Api", () => {
                 success : false,
                 message : err.message || "Internal Server Error"
             })
+            next()
         })
     });
 
