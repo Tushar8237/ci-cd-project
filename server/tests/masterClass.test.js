@@ -103,7 +103,7 @@ describe("Master class Api", () => {
         expect(res.body.success).toBeFalsy();
         expect(res.body.message).toMatch(/All field required/);
     })
-
+    
     // Get master class
     it("Should return a master class successfully", async () => {
         const mockMasterClass = {

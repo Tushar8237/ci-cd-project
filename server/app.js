@@ -1,4 +1,3 @@
-// app.js
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -27,7 +26,7 @@ app.use(rateLimiter); // Apply rate limiting to all routes
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("Test API is running");
+  res.send("Fast route response");
 });
 
 app.use('/api/v1', authRoutes);
