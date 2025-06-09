@@ -20,6 +20,8 @@ if (cluster.isPrimary) {
   cluster.on('exit', (worker, code, single) => {
     console.log(`Worker ${worker.process.pid} died. Restarting`);
     cluster.fork();
+    console.log(code);
+    console.log(single)
   });
 } else {
   // Each worker runs this code
